@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<html lang="cs-CZ">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        var ptop = 185;
+        var pleft = 45;
+        var angle = 0;
+        $(document).ready(function(){
+            $("button").click(function(){
+                var command = $("#command").val();
+                console.log(command);
+                switch(command) {
+                    case "V":
+                    case "vychod":
+                    case "v":
+                    case "right":
+                    case "vpravo":
+                    case "east":
+                        if (pleft + 116 < 1195){
+                            pleft = pleft + 116;
+                            angle = 0;
+                            $("#obrazek").animate({top:ptop, left: pleft}).css('transform','rotate(' + angle + 'deg)');
+                            //document.getElementById("karel").setAttribute("style","background-image:url(karel.gif) ;height:90px;width:160px;position: absolute; left: 45px; top: 185px;")
+                            if (ptop == 649 && pleft == 1089 )
+                            {window.alert("Jsi vítěz!")}}
+                        break;
+                    case "Z":
+                    case "zapad":
+                    case "z":
+                    case "left":
+                    case "vlevo":
+                    case "west":
+                        if (pleft - 116> 44){
+                            pleft = pleft - 116;
+                            angle = 0;
+                            $("#obrazek").animate({top:ptop, left: pleft}).css('transform','rotate(' + angle + 'deg)');
+                            //document.getElementById("obrazek").setAttribute("style","background-image:url(karelZ.gif) ;height:90px;width:160px;position: absolute; left: 45px; top: 185px;")
+                            }
+                        break;
+                    case "S":
+                    case "sever":
+                    case "s":
+                    case "up":
+                    case "nahoru":
+                    case "north":
+                        if (ptop - 116 > 165){
+                            ptop = ptop - 116;
+                            angle = 270;
+                            $("#obrazek").animate({top:ptop, left: pleft}).css('transform','rotate(' + angle + 'deg)');
+                            //document.getElementById("karel").setAttribute("style","background-image:url(karel.gif) ;height:90px;width:160px;position: absolute; left: 45px; top: 185px;")
+                            }
+                        break;
+                    case "J":
+                    case "jih":
+                    case "j":
+                    case "down":
+                    case "dolů":
+                    case "south":
+                        if (ptop + 116 < 760){
+                            ptop = ptop + 116;
+                            angle = 90;
+                            $("#obrazek").animate({top:ptop, left: pleft}).css('transform','rotate(' + angle + 'deg)');
+                            //document.getElementById("karel").setAttribute("style","background-image:url(karel.gif) ;height:90px;width:160px;position: absolute; left: 45px; top: 185px;")
+                            }
+                        break;
+                    case "start":
+                        ptop = 185;
+                        pleft = 45;
+						angle = 0;
+                        $("#obrazek").animate({top:ptop, left: pleft}).css('transform','rotate(' + angle + 'deg)');
+                        //document.getElementById("karel").setAttribute("style","background-image:url(karel.gif) ;height:90px;width:160px;position: absolute; left: 45px; top: 185px;")
+                        break;
+                }
+                });
+
+        });
+    </script>
+
+
+<p align="center"><img style="float: right" src="ruzice.jpg" height="86" width="89"> Ahoj, já jsem Karel. Urči směr, kterým by jsi chtěl/a, abych se vydal. Nabízejí se ti čtyři světové strany - sever, jih, východ a západ.
+    <br>Chceš-li, abych se vrátil na začátek, napiš "start".</p>
+
+<p align="center">
+<input id="command" value="">
+<button>Zadej směr (S,J,Z,V)</button>
+</p>
+</head>
+<body>
+<hr width="100%" size="2" color="black">
+<img id="obrazek" src="karel.gif" height="90" width="160" style="position: absolute">
+<div> <img src="maze.svg" height="698" width="1280"></div>
+
+
+
+
+
+</body>
+</html>
